@@ -28,17 +28,11 @@ void insertion_sort_list(listint_t **list)
 			if (node2->next != NULL)
 				node2->next->prev = node2->prev;
 			node2->prev->next = node2->next;
+			node2->next = node2->prev;
 			node2->prev = node2->prev->prev;
-			if (node2->prev != NULL)
-			{
-				node2->next = node2->prev->next;
-				node2->prev->next = node2;
-			}
-			else
-			{
-				node2->next = node2->next->prev;
-			}
 			node2->next->prev = node2;
+			if (node2->prev != NULL)
+				node2->prev->next = node2;
 			if (node2->prev == NULL)
 				*list = node2;
 			print_list(*list);
